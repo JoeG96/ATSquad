@@ -94,19 +94,11 @@ public class followPlayer : MonoBehaviour
                     {
                         objectDistances[2] = distance;
                     }
-                    //Debug.Log("Collectable added to list at position: " + distance);
                     Vector3 collectableDestination = gameObject.transform.position;
                     if (distance < findDistance)
                     {
                         navMesh.SetDestination(collectableDestination);
                     }
-                    else
-                    {
-                        //notification.CallSend("No collectable in range", 3);
-                        //Debug.Log("Can't find collectable");
-                    }
-
-
                     if (distance < 3)
                     {
                         Debug.Log("Object collected");
@@ -115,7 +107,6 @@ public class followPlayer : MonoBehaviour
                         SetToRecall(followPos.transform.position);
                         notification.CallSend("Object Collected", 3);
                     }
-
                 }
             }
             else if (collectables == null)
@@ -146,15 +137,14 @@ public class followPlayer : MonoBehaviour
                     {
                         objectDistances[2] = distance;
                     }
-                    //Debug.Log("Enemy added to list at position: " + distance);
                     Vector3 enemyDestination = gameObject.transform.position;
                     navMesh.SetDestination(enemyDestination);
-
                     if (distance <= 3)
                     {
                         notification.CallSend(this + " is Attacking", 3);
                         Debug.Log("Enemy in attack range");
                         SetRange();
+                        AttackEnemies();
                         DisableHunt();
                         SetToRecall(followPos.transform.position);
                     }
@@ -170,7 +160,6 @@ public class followPlayer : MonoBehaviour
 
         enemyInSightRange = Physics.CheckSphere(transform.position, currentSightRange, enemyLayer);
         enemyInAttackRange = Physics.CheckSphere(transform.position, currentAttackRange, enemyLayer);
-
         if (!enemyInSightRange && !enemyInAttackRange)
         {
             // Do nothing
@@ -224,10 +213,6 @@ public class followPlayer : MonoBehaviour
         DisableGo();
         DisableFollow();
         navMesh.SetDestination(targetPos);
-        //target.transform.position = targetPos;
-        //SetTarget(followPos.position);
-        
-        //navMesh.SetDestination(followPos.position);
     }
 
     public void SetToRoam()

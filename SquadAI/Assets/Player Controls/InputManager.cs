@@ -75,6 +75,8 @@ public class InputManager : MonoBehaviour
 
         oneInput = true; // starts with first squaddie selected
         squadIndImage.color = Color.blue;
+        mouseLook.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -138,7 +140,6 @@ public class InputManager : MonoBehaviour
     public bool RightClickPressed()
     {
         //Debug.Log("Right Click Pressed");
-        //mouseLook.enabled = !mouseLook.enabled;
         return groundMovement.RightClick.triggered;
     }
 
@@ -178,6 +179,14 @@ public class InputManager : MonoBehaviour
     {
         Debug.Log("Right Mouse Clicked");
         mouseLook.enabled = !mouseLook.enabled;
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         //playerCommands.ReceiveInput();
     }
 

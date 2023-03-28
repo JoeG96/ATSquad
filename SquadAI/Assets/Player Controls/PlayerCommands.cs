@@ -66,10 +66,8 @@ public class PlayerCommands : MonoBehaviour
 
     public void ReceiveInput()
     {
-
         RaycastHit hit;
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
-
         if (Physics.Raycast(ray, out hit) && CheckDistance(hit.point) == true)
         {
             SetTarget(hit.point);

@@ -122,6 +122,7 @@ public class RadialMenuController : MonoBehaviour
                         //Debug.Log("Hunt Clicked");
                         break;
                 }
+                inputManager.RightMouseClicked();
                 selectedSquadIndicator.SetActive(false);
                 menu.SetActive(false);
             }
@@ -238,23 +239,4 @@ public class RadialMenuController : MonoBehaviour
         coroutineAllowed = true;
     }
 
-    public void Pulse(GameObject button)
-    {
-        //Vector3 originalScale = button.transform.localScale;
-        //button.transform.localScale = Mathf.PingPong(Time.time, ratio) * Vector3.one;
-
-        /*        DOTween.Sequence()
-                    .Append(button.transform.DOScale(new Vector2(10f, 10f), 0.3f).SetDelay(0.3f))
-                    .Append(button.transform.DOScale(Vector2.one, 0.3f))
-                    .SetLoops(-1, LoopType.Restart);*/
-
-        /*        originalScale = button.transform.localScale;
-                button.transform.DOLocalRotate(new Vector3(0, 0, 360), rotationSpeed, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental).SetRelative();
-                var sequence = DOTween.Sequence()
-                    .Append(button.transform.DOScale(new Vector3(originalScale.x + 0.5f, originalScale.y + 0.5f, originalScale.z + 0.5f), scaleSpeed))
-                    .Append(button.transform.DOScale(originalScale, scaleSpeed));
-
-                sequence.SetLoops(-1, LoopType.Restart);*/
-
-    }
 }
